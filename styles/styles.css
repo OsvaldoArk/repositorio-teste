@@ -1,0 +1,59 @@
+:root{
+  --roms-horizontal: 7;                     /* número de salas na horizontal */
+  --roms-vertical: 7;            /* número de salas na vertical */
+  --room-size: 3;                /* tamanho de cada sala (em células) */
+  --room-size-px: calc(var(--room-size) * 36px); /* tamanho de cada sala (em pixels) */
+  --room-gap: 2px;               /* espaçamento entre as salas */
+  --room-gap-px: calc(var(--room-gap) * 1px); /* espaçamento entre as salas (em pixels) */
+  --room-width: calc(var(--room-size-px) + var(--room-gap-px)); /* largura de cada sala (em pixels) */
+  --room-height: calc(var(--room-size-px) + var(--room-gap-px)); /* altura de cada sala (em pixels) */
+  --room-line-w: 2px;                  /* espessura da linha de sala */
+  --room-line: rgb(202, 69, 2);  /* cor da linha de sala */
+}
+
+html,body,#app{height:100%}
+body{margin:0;font:14px/1.4 system-ui;background:#0b0f1a;color:#e8eefc}
+#app{display:grid;grid-template-columns:60% 38%;gap:8px;padding:8px}
+#left,#right{background:#111a2b;border:1px solid #22304a;border-radius:10px;padding:8px}
+
+#room-grid{
+  display:grid;
+  grid-template-columns:repeat(21,1fr);
+  grid-auto-rows:27px;
+  gap:2px;
+  background:#0b0f1a;
+  border:1px solid #1b2a43;
+  border-radius:8px;
+  padding:4px;
+  position:relative;        /* necessário pro ::before */
+  overflow:hidden;  
+}
+
+#room-grid::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  pointer-events: none;
+  z-index: 2;
+  border-radius: 4px;
+
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      var(--room-line) 0 var(--room-line-w),
+      transparent var(--room-line-w) calc(100%/var( --roms-horizontal) - var(--room-line-w)),
+      var(--room-line) calc(100%/var( --roms-horizontal) - var(--room-line-w)) calc(100%/7)
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      var(--room-line) 0 var(--room-line-w),
+      transparent var(--room-line-w) calc(100%/var( --roms-horizontal) - var(--room-line-w)),
+      var(--room-line) calc(100%/var( --roms-horizontal) - var(--room-line-w)) calc(100%/var( --roms-horizontal))
+    );
+  background-size: 100% 100%;
+}
+
+.cell{
+  background:#15213a;border:1px solid #1f2d4a;border-radius:4px;
+}
+.cell.door{ background:#1a2744 } /* portas: sutilmente diferente */
