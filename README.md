@@ -1,7 +1,7 @@
 # Jogo versão demo do boardgame
 
 ### Versão de teste para que os usuários possam conhecer as mecânicas.
-- 4 personagens básicos.
-- 6 tipos de inimigos.
-- 4 habilidades de cada personagem.
-- 20 tipos diferentes de salas.
+- 10 personagens básicos.
+- 10 tipos de inimigos.
+- 8 habilidades de cada personagem.
+- 40 tipos diferentes de salas.
